@@ -10,7 +10,7 @@ void main() {
       Rating('Lily', 3),
     ];
 
-    final average = Util.calculateAverage(ratings);
+    final average = calculateAverage(ratings);
     expect(average, 4);
 
     // expect(ratings, isNotEmpty);
