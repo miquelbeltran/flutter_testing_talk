@@ -1,0 +1,7 @@
+import 'package:flutter_testing_talk/model.dart';
+
+class Util {
+  static double calculateAverage(List<Rating> ratings) {
+    return ratings.map((e) => e.rating).reduce((a, b) => a + b) / ratings.length;
+  }
+}
