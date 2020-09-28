@@ -182,13 +182,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
-  image_test_utils:
-    dependency: "direct dev"
-    description:
-      name: image_test_utils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   intl:
     dependency: transitive
     description:
@@ -246,12 +239,12 @@ packages:
     source: hosted
     version: "0.9.7"
   mockito:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: mockito
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.2"
+    version: "4.1.1"
   nested:
     dependency: transitive
     description:
@@ -259,6 +252,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.4"
+  network_image_mock:
+    dependency: "direct dev"
+    description:
+      name: network_image_mock
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   node_interop:
     dependency: transitive
     description:

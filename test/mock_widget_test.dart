@@ -5,18 +5,23 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_testing_talk/api_service.dart';
 import 'package:flutter_testing_talk/gifscore.dart';
+import 'package:flutter_testing_talk/homepage.dart';
 
 import 'package:flutter_testing_talk/model.dart';
+import 'package:mockito/mockito.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:provider/provider.dart';
 
+class MockApiService extends Mock implements ApiService {}
+
 void main() {
-  group('Basic Widget Tests', () {
-    testWidgets('display GifScore', (WidgetTester tester) async {
+  group('Mock Widget Tests', () {
+    testWidgets('load homescreen with mocks', (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         final gif = Gif(
           id: '1',
@@ -26,16 +31,21 @@ void main() {
           rating: 3.5,
         );
 
+        final mockApiService = MockApiService();
+
+        when(mockApiService.getGifs())
+            .thenAnswer((realInvocation) => SynchronousFuture([gif]));
+
         await tester.pumpWidget(
-          Directionality(
-            textDirection: TextDirection.rtl,
-            child: GifScore(
-              gif,
-            ),
+          Provider<ApiService>(
+            create: (context) => mockApiService,
+            child: MaterialApp(home: HomePage()),
           ),
         );
 
         expect(find.text('Kermit Sipping Tea'), findsOneWidget);
+
+        verify(mockApiService.getGifs());
       });
     });
   });
